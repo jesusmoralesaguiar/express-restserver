@@ -2,15 +2,14 @@ import { Router } from "express";
 
 import {usuariosGet, usuariosPost, usuariosPut, usuariosDelete} from '../controllers/usuarios.mjs'
 
-const router = Router();
+const usuarios_router = Router();
 
-router.get("/", usuariosGet);
+usuarios_router.get("/", usuariosGet);
 
-router.post("/", usuariosPost)
+usuarios_router.post("/", usuariosPost)
 
-router.put("/:id", usuariosPut)
+usuarios_router.put("/:id", usuariosPut)
 
-router.delete("/", usuariosDelete)
+usuarios_router.delete("/", usuariosDelete)
 
-
-export default router;
+export default usuarios_router;
