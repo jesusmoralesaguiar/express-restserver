@@ -4,12 +4,14 @@ import {usuarioGet, usuariosGet, usuariosPost, usuariosPut, usuariosDelete} from
 import { check } from "express-validator";
 import { validarCampos } from "../middlewares/validar-campos.mjs";
 import { esRoleValido, existeEmail, existeUsuarioPorId } from "../helpers/db-validators.mjs";
+import { validarJWT } from "../middlewares/validar-jwt.mjs";
 
 const usuarios_router = Router();
 
 usuarios_router.get("/", usuariosGet);
 
 usuarios_router.get("/:id",[
+    validarJWT,
     check('id', 'No es un ID valido').isMongoId(),
     check('id').custom(existeUsuarioPorId),
     validarCampos
