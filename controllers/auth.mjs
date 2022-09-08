@@ -2,6 +2,7 @@ import {response} from 'express';
 import Usuario from '../models/usuarios.mjs';
 import bcryptjs from 'bcryptjs';
 import { generarJWT } from '../helpers/generar-jwt.mjs';
+import { googleVerify } from '../helpers/google-verify.mjs';
 
 
 const login  = async (req, res = response) => {
@@ -46,4 +47,26 @@ const login  = async (req, res = response) => {
         
 };
 
-export {login};
+
+const googleSignIn = async( req, res = response ) => {
+
+    const { id_token } = req.body;
+
+    try {
+
+        const googleUser = await googleVerify(id_token);
+        console.log(googleUser)
+
+        res.json({
+            msg: 'Todo bien!',
+            id_token
+        })
+
+    } catch ( error ) {
+
+    }
+
+   
+}
+
+export {login, googleSignIn};
