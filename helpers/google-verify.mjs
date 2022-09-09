@@ -12,9 +12,9 @@ async function googleVerify( token = '') {
   const { name, picture, email } = ticket.getPayload();
   
   return {
-    name,
-    picture,
-    email
+    nombre: name,
+    img: picture,
+    correo: email
   }
 }
 
