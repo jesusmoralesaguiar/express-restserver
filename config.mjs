@@ -5,6 +5,9 @@ dotenv.config();
 
 nconf.env(['PORT', 'NODE_ENV'])
   .argv({
+    'password': {
+      
+    },
     'e': {
       alias: 'NODE_ENV',
       describe: 'Set production or development mode.',

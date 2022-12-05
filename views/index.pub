@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Acceso denegado</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' type='text/css' media='screen' href='/static/main.css'>
+</head>
+<body>
+    <div class="login-box">
+        <h2>Server Configuration</h2>
+        <form id="config-form"method="POST" action="/api/v0/config">
+          <div class="user-box">
+            <input type="text" name="token">
+            <label>TOKEN</label>
+          </div>
+          <div class="user-box">
+            <input type="text" name="port">
+            <label>PORT (default:3000)</label>
+          </div>
+          <h2>Sigma Configuration</h2>
+          <div class="user-box">
+            <input type="text" name="sigma_url">
+            <label>SIGMA_URL (default: https://sigma.live-01.nextgen.igrupobbva)</label>
+          </div>
+          <div class="user-box">
+            <input type="text" name="namespaces">
+            <label>namespaces (default:all)</label>
+          </div>
+          <div class="user-box">
+            <input type="text" name="ssl">
+            <label>SSL (default:OFF)</label>
+          </div>
+          <div class="user-box">
+            <input type="text" name="ca_file">
+            <label>CA_file (onlye if SSL is "true")</label>
+          </div>
+          <h2>Neo4j Configuration</h2>
+          <div class="user-box">
+            <input type="text" name="database_url">
+            <label>DATABASE_URL</label>
+          </div>
+          <div class="user-box">
+            <input type="text" name="database_port">
+            <label>DATABASE_PORT (default: 7687)</label>
+          </div>
+          <div class="user-box">
+            <input type="text" name="database_name">
+            <label>DATABASE_NAME</label>
+          </div>
+          <div class="user-box">
+            <input type="text" name="encryption">
+            <label>ENCRYPTION (default: OFF)</label>
+          </div>
+          <button type="submit">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            Submit
+          </button>
+        </form>
+      </div>
+</body>
+</html>

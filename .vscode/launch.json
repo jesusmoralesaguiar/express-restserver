@@ -5,13 +5,56 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "type": "pwa-node",
+            "name": "ObservabilityAPI",
+            "console": "integratedTerminal",
+            "internalConsoleOptions": "neverOpen",
+            "program": "${workspaceFolder}/../psam/psam-bff/app.js",
             "request": "launch",
-            "name": "Launch Program",
+            "restart": true,
+            "runtimeExecutable": "·",
             "skipFiles": [
                 "<node_internals>/**"
             ],
-            "program": "${workspaceFolder}/app.mjs"
+            "type": "node"
+        },
+        {
+            "name": "npm start",
+            "program": "${workspaceFolder}/../psam/psam-bff/scripts/setAlarms.js",
+            "request": "launch",
+            "skipFiles": [
+                "<node_internals>/**"
+            ],
+            "type": "node",
+            "runtimeArgs": [
+                "--experimental-specifier-resolution=node"
+              ]
+        },
+        {
+            "name": "Launch SetAlarms",
+            "type": "node",
+            "program": "${workspaceFolder}/../psam/psam-bff/scripts/setAlarms.js",
+            "request": "launch",
+            "skipFiles": [
+                "<node_internals>/**"
+            ],
+        },
+        {
+            "name": "Launch SetTree",
+            "type": "node",
+            "program": "${workspaceFolder}/../psam/psam-bff/scripts/setTree.js",
+            "request": "launch",
+            "skipFiles": [
+                "<node_internals>/**"
+            ],
+        },
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "test",
+            "skipFiles": [
+                "<node_internals>/**"
+            ],
+            "program": "${workspaceFolder}/test.mjs"
         }
     ]
 }
