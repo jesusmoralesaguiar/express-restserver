@@ -1,8 +1,7 @@
 import express from 'express';
 import cors from 'cors';
-import auth_api from '../routes/auth.mjs';
-import usuarios_api from '../routes/usuarios.mjs';
-import movies_api from '../routes/movies.mjs';
+import auth_api from '../routes/auth.js';
+import usuarios_api from '../routes/usuarios.js';
 import swaggerJSDoc from 'swagger-jsdoc';
 import swaggerUi from 'swagger-ui-express';
 
@@ -63,7 +62,6 @@ class Server {
     routes() {
         this.app.use(nconf.get("api_path") + '/auth', auth_api);
         this.app.use(nconf.get("api_path") + '/usuarios', usuarios_api);
-        this.app.use(nconf.get("api_path"), movies_api);
     }
 
     listen() {
