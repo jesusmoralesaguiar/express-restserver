@@ -1,4 +1,4 @@
-import { validarCampos } from "./validar-campos.mjs";
+import { validarCampos } from "./validar-campos.js";
 import { validarJWT } from "./validar-jwt.js";
 import { esAdminRole, tieneRole } from "./validar-roles.js";
 

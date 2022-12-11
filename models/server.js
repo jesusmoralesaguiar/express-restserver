@@ -1,12 +1,15 @@
 import express from 'express';
 import cors from 'cors';
 import auth_api from '../routes/auth.js';
+import categorias from '../routes/categorias.js'
 import usuarios_api from '../routes/usuarios.js';
+import productos from '../routes/productos.js';
+import buscar from '../routes/buscar.js';
 import swaggerJSDoc from 'swagger-jsdoc';
 import swaggerUi from 'swagger-ui-express';
 
-import nconf from '../config.mjs';
-import {dbConnection} from '../database/config.mjs';
+import nconf from '../config.js';
+import {dbConnection} from '../database/config.js';
 
 const swaggerDefinition = {
     info: {
@@ -34,7 +37,13 @@ class Server {
     constructor() {
         this.app = express();
         this.port = nconf.get("PORT");
-        this.usuariosPath = '/api/usuarios';
+        this.paths = {
+            auth: '/api/auth',
+            usuarios: '/api/usuarios',
+            categorias: '/api/categorias',
+            productos: '/api/productos',
+            buscar: '/api/buscar'
+        }
 
         // Conectar a base de datos
         this.conectarDB();
@@ -60,8 +69,11 @@ class Server {
     }
 
     routes() {
-        this.app.use(nconf.get("api_path") + '/auth', auth_api);
-        this.app.use(nconf.get("api_path") + '/usuarios', usuarios_api);
+        this.app.use(this.paths.auth, auth_api);
+        this.app.use(this.paths.usuarios, usuarios_api);
+        this.app.use(this.paths.categorias, categorias);
+        this.app.use(this.paths.productos, productos)
+        this.app.use(this.paths.buscar, buscar)
     }
 
     listen() {

@@ -1,5 +1,5 @@
 import { response } from "express";
-import Usuario from "../models/usuarios.mjs";
+import Usuario from "../models/usuarios.js";
 import bcryptjs from 'bcryptjs';
 
 const usuarioGet = async (req, res ) => {
