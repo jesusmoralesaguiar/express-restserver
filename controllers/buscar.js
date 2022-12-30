@@ -1,5 +1,5 @@
 import {response} from 'express';
-import { ObjectId } from 'mongoose';
+import mongoose from 'mongoose';
 import Usuario from '../models/usuarios.js'
 
 const coleccionesPermitidas = [
@@ -11,7 +11,7 @@ const coleccionesPermitidas = [
 
 const buscarUsuarios = async( termino = '', res = response ) => {
     
-    const esMongoID = ObjectId.isvalid( termino );
+    const esMongoID = mongoose.ObjectId.isvalid( termino );
 
     if (esMongoID) {
         const usuario = await Usuario.findById(termino);
