@@ -1,5 +1,5 @@
-import Server from './models/server.js'
+import ServerApi from './models/server.js'
 
-const server = new Server();
+const server = new ServerApi();
 
 server.listen();

@@ -1,17 +1,22 @@
 import express from 'express';
 import cors from 'cors';
+import { createServer } from 'http';
 import auth_api from '../routes/auth.js';
 import categorias from '../routes/categorias.js';
 import fileUpload from 'express-fileupload';
 import usuarios_api from '../routes/usuarios.js';
 import productos from '../routes/productos.js';
 import buscar from '../routes/buscar.js';
+import { Server } from "socket.io";
 import uploads from '../routes/uploads.js';
+const {pathname: root} = new URL('../', import.meta.url)
+
 import swaggerJSDoc from 'swagger-jsdoc';
 import swaggerUi from 'swagger-ui-express';
 
 import nconf from '../config.js';
 import {dbConnection} from '../database/config.js';
+import { socketController } from '../sockets/controller.js';
 
 const swaggerDefinition = {
     info: {
@@ -34,10 +39,12 @@ const options = {
 // initialize swagger-jsdoc
 const swaggerSpec = swaggerJSDoc(options);
 
-class Server {
+class ServerApi {
 
     constructor() {
         this.app = express();
+        this.httpServer = createServer(this.app);
+        this.io = new Server(this.httpServer);
         this.port = nconf.get("PORT");
         this.paths = {
             auth: '/api/auth',
@@ -54,6 +61,8 @@ class Server {
         this.middlewares();
         //Rutas de mi aplicacion
         this.routes();
+        //Sockets
+        this.sockets(); 
     }
 
     async conectarDB() {
@@ -67,7 +76,7 @@ class Server {
         // Lectura y parse del body
         this.app.use(express.json());
         //Directorio Publico
-        this.app.use(express.static('public'));
+        this.app.use(express.static(root + '/public'));
         // Note that this option available for versions 1.0.0 and newer.
         this.app.use(fileUpload({
             useTempFiles : true,
@@ -85,11 +94,17 @@ class Server {
         this.app.use(this.paths.uploads, uploads)
     }
 
+    sockets() {
+        this.io.on('connection', socketController)
+    }
+
     listen() {
-        this.app.listen(this.port, () => {
+        
+        this.httpServer.listen(this.port, () => {
             console.log(`Servidor corriendo en puerto ${this.port}`)
         });
     }
+
 }
 
-export default Server;
+export default ServerApi;

@@ -18,11 +18,13 @@
     "express-fileupload": "^1.4.0",
     "express-validator": "^6.14.2",
     "google-auth-library": "^8.7.0",
+    "http": "0.0.1-security",
     "jsonwebtoken": "^8.5.1",
     "lodash": "^4.17.21",
     "mongoose": "^6.5.2",
     "nconf": "^0.12.0",
     "neo4j-driver": "^4.4.7",
+    "socket.io": "^4.5.4",
     "swagger-jsdoc": "^6.2.1",
     "swagger-ui-express": "^4.5.0"
   }
